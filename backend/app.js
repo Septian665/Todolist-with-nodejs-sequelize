@@ -1,0 +1,20 @@
+import express from 'express';
+import userRouter from './routes/users.js';
+import taskRouter from './routes/tasks.js';
+import postRouter from './routes/posts.js';
+import cors from 'cors';
+
+const app = express();
+const PORT = 5000;
+
+app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+
+app.use(userRouter);
+app.use('/tasks',taskRouter);
+app.use(postRouter);
+
+app.listen(PORT, () => {
+   console.log(`server running http://127.0.0.1:${PORT}`)
+})
