@@ -11,12 +11,10 @@ const getTask = async (req, res) => {
 
 const addTask = async (req, res) => {
    try {
-      const {name, completed} = req.body
+      const {name} = req.body
       if(!name) { throw { code:429, message: 'name is required'}}
-      if(!completed) { throw { code:429, message: 'completed is required'}}
       const result = await Task.create({
          name: name,
-         completed: completed
       });
       return res.status(201).json({
          status: true,
@@ -60,9 +58,7 @@ const updateTask  = async(req, res) => {
       })
       if(!dataTask) { throw { code:404, message: 'data not found'}}
       
-      const {name, completed} = req.body
-      // if(!name) { throw { code:429, message: 'name is required'}}
-      // if(!completed) { throw { code:429, message: 'completed is required'}}
+      const {name, completed} = req.body;
 
       const data = {
          name: name,
